@@ -14,6 +14,24 @@ class _VideosPageState extends State<VideosPage> {
         title: Text("Videos"),
       ),
       drawer: MainDrawer(),
+      body: Center(
+        child: ListView(
+          children: [
+            videos("Video1"),
+            videos("Video2"),
+            videos("Video3"),
+          ],
+        ),
+      ),
     );
   }
+}
+
+Widget videos(String message) {
+  return Card(
+    child: SizedBox(
+      height: 200,
+      child: Center(child: Text(message)),
+    ),
+  );
 }

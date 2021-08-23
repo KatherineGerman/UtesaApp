@@ -14,6 +14,24 @@ class _MisQuejasPageState extends State<MisQuejasPage> {
         title: Text("Mis Quejas"),
       ),
       drawer: MainDrawer(),
+      body: Center(
+        child: ListView(
+          children: [
+            quejas("queja1"),
+            quejas("queja2"),
+            quejas("queja3"),
+          ],
+        ),
+      ),
     );
   }
+}
+
+Widget quejas(String message) {
+  return Card(
+    child: SizedBox(
+      height: 150,
+      child: Center(child: Text(message)),
+    ),
+  );
 }
