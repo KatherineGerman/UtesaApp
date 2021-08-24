@@ -26,10 +26,17 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: MainDrawer(),
       body: Container(
-        padding: EdgeInsets.all(30.0),
         child: GridView.count(
+          padding: EdgeInsets.all(30.0),
           crossAxisCount: 2,
           children: <Widget>[
+            Center(
+              child: Text(
+                'BIENVENID@S ',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Divider(),
             Card(
               margin: EdgeInsets.all(8.0),
               child: InkWell(
@@ -112,7 +119,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildCard() => Card(
+  /* Widget buildCard() => Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
         child: Column(
           children: [
@@ -123,5 +130,20 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 16),
           ],
         ),
-      );
+      ); */
 }
+
+/*class BuildCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+      child: Card(
+        color: Colors.lightGreen,
+        child: Container(
+          height: 100,
+        ),
+      ),
+    ));
+  }
+}*/
