@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:utesa_final_app/Services/fetch_recinto_services.dart';
+import 'package:utesa_final_app/models/recintos_model.dart';
 import 'package:utesa_final_app/pages/home_page.dart';
 import 'package:utesa_final_app/utils/color.dart';
 import 'package:utesa_final_app/widgets/btn_widget.dart';
-//import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,6 +15,30 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String dropdownValue = 'Seleccione tu Recinto';
+  List recintodata = [];
+
+  String url =
+      'https://apps.ia3x.com/ute_app_utesa/index.php?/App/recintos'; //its null for me you can copy an id from api and place here it will be seen....
+  Future<String> getRecinto() async {
+    //default id for the dropdown
+
+    var res = await http.get(Uri.parse(Uri.encodeFull(
+        url))); //if you have any auth key place here...properly..
+    var resBody = json.decode(res.body);
+
+    setState(() {
+      recintodata = resBody;
+    });
+
+    return "Sucess";
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    this.getRecinto();
+  }
 
   //Post
 
@@ -114,12 +142,12 @@ class _LoginPageState extends State<LoginPage> {
                 dropdownValue = newValue!;
               });
             },
-            items: <String>['Seleccione tu Recinto', 'Two', 'Free', 'Four']
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
+            items: recintodata.map((item) {
+              return DropdownMenuItem(
+                  child: new Text(
+                    item['cod'],
+                  ),
+                  value: item['txt'].toString());
             }).toList(),
           ),
         ),
