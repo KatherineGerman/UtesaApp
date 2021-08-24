@@ -11,6 +11,7 @@ class _ClasesPageState extends State<ClasesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF33691E),
         title: Text("Clases virtuales"),
       ),
       drawer: MainDrawer(),

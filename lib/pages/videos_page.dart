@@ -11,9 +11,28 @@ class _VideosPageState extends State<VideosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF33691E),
         title: Text("Videos"),
       ),
       drawer: MainDrawer(),
+      body: Center(
+        child: ListView(
+          children: [
+            videos("Video1"),
+            videos("Video2"),
+            videos("Video3"),
+          ],
+        ),
+      ),
     );
   }
+}
+
+Widget videos(String message) {
+  return Card(
+    child: SizedBox(
+      height: 200,
+      child: Center(child: Text(message)),
+    ),
+  );
 }

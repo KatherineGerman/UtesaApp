@@ -4,9 +4,12 @@ import 'package:utesa_final_app/pages/calificaciones_page.dart';
 import 'package:utesa_final_app/pages/clases_page.dart';
 import 'package:utesa_final_app/pages/home_page.dart';
 import 'package:utesa_final_app/pages/horarios_page.dart';
+import 'package:utesa_final_app/pages/login_page.dart';
+import 'package:utesa_final_app/pages/misquejas_page.dart';
 import 'package:utesa_final_app/pages/noticias_page.dart';
 import 'package:utesa_final_app/pages/pensum_page.dart';
 import 'package:utesa_final_app/pages/quejas_page.dart';
+import 'package:utesa_final_app/pages/sugerencias_page.dart';
 import 'package:utesa_final_app/pages/tareas_pages.dart';
 import 'package:utesa_final_app/pages/videos_page.dart';
 
@@ -14,7 +17,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: Column(children: <Widget>[
+        child: ListView(children: <Widget>[
       Container(
         width: double.infinity,
         padding: EdgeInsets.all(20),
@@ -143,19 +146,19 @@ class MainDrawer extends StatelessWidget {
         },
       ),
       ListTile(
-        leading: Icon(Icons.add_comment_outlined),
+        leading: Icon(Icons.comment_outlined),
         title: Text('Mis Quejas '),
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => QuejasPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MisQuejasPage()));
         },
       ),
       ListTile(
         leading: Icon(Icons.add_comment_outlined),
-        title: Text('Quejas '),
+        title: Text('Sugerencias '),
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => QuejasPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SugerenciasPage()));
         },
       ),
       Divider(
@@ -164,7 +167,10 @@ class MainDrawer extends StatelessWidget {
       ListTile(
         leading: Icon(Icons.logout),
         title: Text('Salir'),
-        onTap: null,
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => LoginPage()));
+        },
       ),
     ]));
   }

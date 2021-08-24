@@ -11,6 +11,7 @@ class _PensumPageState extends State<PensumPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF33691E),
         title: Text("Pensum"),
       ),
       drawer: MainDrawer(),
