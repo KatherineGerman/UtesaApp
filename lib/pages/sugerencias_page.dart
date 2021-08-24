@@ -12,6 +12,7 @@ class _SugerenciasPageState extends State<SugerenciasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF33691E),
         title: Text("Sugerencias"),
       ),
       drawer: MainDrawer(),

@@ -45,7 +45,6 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Container(),
             Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(

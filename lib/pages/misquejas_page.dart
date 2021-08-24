@@ -11,6 +11,7 @@ class _MisQuejasPageState extends State<MisQuejasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF33691E),
         title: Text("Mis Quejas"),
       ),
       drawer: MainDrawer(),
