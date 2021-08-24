@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:utesa_final_app/models/recintos_model.dart';
+import 'package:utesa_final_app/Services/fetch_recinto_services.dart';
+
 import 'package:utesa_final_app/pages/home_page.dart';
 import 'package:utesa_final_app/utils/color.dart';
 import 'package:utesa_final_app/widgets/btn_widget.dart';
-//import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,7 +16,25 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String dropdownValue = 'Seleccione tu Recinto';
+  List recintoData = [];
 
+  Future<String?> recinto() async {
+    var res = await http.get(Uri.parse(Uri.encodeFull(
+        "https://apps.ia3x.com/ute_app_utesa/index.php?/App/recintos")));
+    print(res.body + "Probando Services");
+    var resBody = json.decode(res.body);
+
+    setState(() {
+      recintoData = resBody;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    this.recinto();
+  }
   //Post
 
 /*   final url = 'https://apps.ia3x.com/ute_app_utesa/index.php?/App/login?';
@@ -30,14 +53,18 @@ class _LoginPageState extends State<LoginPage> {
 
   // Get
 
-  /* 
-  String url = 'https://apps.ia3x.com/ute_app_utesa/index.php?/App/recintos';
+  // String url = 'https://apps.ia3x.com/ute_app_utesa/index.php?/App/recintos';
 
-  Future<String?> _getrecinto() async {
-    var response = await http.get(Uri.parse(url));
+  // Future<List<RecintosModel>> _getrecinto() async {
+  //   var response = await http.get(Uri.parse(url));
 
-    print(response.body);
-  } */
+  //   print(response.body);
+  //    setState(() {
+  //           var extractdata = jsonDecode(response.body);
+  //           data = extractdata["cod"];
+  //       });
+  //       return <RecintosModel>[];
+  //   }
 
   @override
   Widget build(BuildContext context) {
@@ -113,18 +140,18 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(
               color: Colors.black,
             ),
+            items: recintoData.map((item) {
+              return DropdownMenuItem(
+                value: item['txt'].toString(),
+                child: Text(item['cod']),
+              );
+            }).toList(),
             onChanged: (String? newValue) {
               setState(() {
                 dropdownValue = newValue!;
+                print(dropdownValue.toString());
               });
             },
-            items: <String>['Seleccione tu Recinto', 'Two', 'Free', 'Four']
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
           ),
         ),
       ),
