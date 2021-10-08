@@ -1,7 +1,5 @@
 # utesa_final_app
-
-A new Flutter project.
-
+Interfaz grafica de aplicacion movil hecha en React para proyecto final de Intr. a desarrollo de Aplicaciones Moviles
 ## Getting Started
 
 This project is a starting point for a Flutter application.
